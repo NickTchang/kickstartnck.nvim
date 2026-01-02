@@ -796,7 +796,9 @@ require('lazy').setup({
         lua = { 'stylua' },
         -- cpp = { 'clang-format' },
         -- Conform can also run multiple formatters sequentially
-        python = { 'isort', 'black', stop_after_first = false },
+        python = { 'ruff_fix', 'ruff_format', 'ruff_organize_imports', stop_after_first = false },
+        toml = { 'tombi' },
+        -- python = { 'ruff', 'black', stop_after_first = false },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
