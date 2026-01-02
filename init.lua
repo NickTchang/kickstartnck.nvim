@@ -87,6 +87,12 @@ I hope you enjoy your Neovim journey,
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- tabs
+vim.o.expandtab = true
+vim.o.smartindent = true
+vim.o.tabstop = 2
+vim.o.shiftwidth = 2
+
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = false
 
@@ -678,7 +684,21 @@ require('lazy').setup({
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
         clangd = {},
-        pyright = {},
+        -- pyright = {},
+        -- pyrefly = {},
+        basedpyright = {
+          settings = {
+            basedpyright = {
+              analysis = {
+                typeCheckingMode = 'basic',
+                diagnosticMode = 'openFilesOnly',
+                inlayHints = {
+                  callArgumentNames = true,
+                },
+              },
+            },
+          },
+        },
         gdtoolkit = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
@@ -774,9 +794,9 @@ require('lazy').setup({
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
-        cpp = { 'clang-format' },
+        -- cpp = { 'clang-format' },
         -- Conform can also run multiple formatters sequentially
-        python = { 'isort', 'black', stop_after_first = true },
+        python = { 'isort', 'black', stop_after_first = false },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
